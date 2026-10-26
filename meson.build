@@ -328,6 +328,7 @@ executable(
   'input.c', 'input.h',
   'key-binding.c', 'key-binding.h',
   'main.c',
+  'kestrel_hint.c', 'kestrel_hint.h',
   'notify.c', 'notify.h',
   'quirks.c', 'quirks.h',
   'reaper.c', 'reaper.h',
@@ -352,6 +353,7 @@ executable(
 executable(
   'footclient',
   'client.c', 'client-protocol.h',
+  'kestrel_hint.c', 'kestrel_hint.h',
   'foot-features.c', 'foot-features.h',
   'macros.h',
   'util.h',
