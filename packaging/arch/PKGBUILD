@@ -12,7 +12,8 @@ arch=(x86_64)
 url='https://github.com/kestrel-distro/foot'
 license=(MIT)
 depends=(fcft fontconfig libutf8proc libxkbcommon ncurses pixman wayland)
-makedepends=(git meson ninja scdoc python tllist wayland-protocols)
+makedepends=(git meson ninja scdoc python tllist wayland-protocols
+             fcft fontconfig libutf8proc libxkbcommon ncurses pixman wayland pkgconf)
 optdepends=('libutempter: utmp logging' 'libnotify: desktop notifications' 'xdg-utils: URI launching')
 provides=(foot)
 conflicts=(foot)
