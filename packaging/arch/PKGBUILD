@@ -32,5 +32,7 @@ build() {
 package() {
     cd "${startdir}/../.."
     DESTDIR="$pkgdir" ninja -C build install
+    # foot-terminfo (Arch) owns these; do not duplicate them.
+    rm -rf "$pkgdir/usr/share/terminfo"
     install -Dm644 -t "$pkgdir/usr/share/licenses/$pkgname/" LICENSE
 }
