@@ -24,7 +24,7 @@ sha256sums=()
 build() {
     cd "${startdir}/../.."
     meson setup build --prefix=/usr --wrap-mode=nodownload \
-        -Ddocs=enabled -Dthemes=true -Dtests=disabled \
+        -Ddocs=enabled -Dthemes=true -Dtests=false \
         -Dterminfo-base-name=foot-extra
     ninja -C build
 }
