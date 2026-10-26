@@ -1,6 +1,5 @@
 /* libkestrel-hint - see kestrel_hint.h. */
 
-#define _GNU_SOURCE
 #include "kestrel_hint.h"
 
 #include <errno.h>
