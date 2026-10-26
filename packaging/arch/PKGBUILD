@@ -1,0 +1,35 @@
+# Maintainer: Kestrel <https://github.com/kestrel-distro>
+#
+# Kestrel's foot fork. The only source change is the per-task hint calls in
+# main.c/client.c/render.c/spawn.c via kestrel_hint.h; it is otherwise upstream
+# foot 1.28.0.
+
+pkgname=foot-kestrel
+pkgver=1.28.0
+pkgrel=1
+pkgdesc='Fast, lightweight Wayland terminal emulator with the Kestrel scheduling hint'
+arch=(x86_64)
+url='https://github.com/kestrel-distro/foot'
+license=(MIT)
+depends=(fcft fontconfig libutf8proc libxkbcommon ncurses pixman wayland)
+makedepends=(git meson ninja scdoc python tllist wayland-protocols)
+optdepends=('libutempter: utmp logging' 'libnotify: desktop notifications' 'xdg-utils: URI launching')
+provides=(foot)
+conflicts=(foot)
+backup=(etc/xdg/foot/foot.ini)
+source=()
+sha256sums=()
+
+build() {
+    cd "${startdir}/../.."
+    meson setup build --prefix=/usr --wrap-mode=nodownload \
+        -Ddocs=enabled -Dthemes=true -Dtests=disabled \
+        -Dterminfo-base-name=foot-extra
+    ninja -C build
+}
+
+package() {
+    cd "${startdir}/../.."
+    DESTDIR="$pkgdir" ninja -C build install
+    install -Dm644 -t "$pkgdir/usr/share/licenses/$pkgname/" LICENSE
+}

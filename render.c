@@ -1,4 +1,5 @@
 #include "render.h"
+#include "kestrel_hint.h"
 
 #include <limits.h>
 #include <signal.h>
@@ -2183,6 +2184,7 @@ render_overlay(struct terminal *term)
 int
 render_worker_thread(void *_ctx)
 {
+    kestrel_hint_set(0, 2);
     struct render_worker_context *ctx = _ctx;
     struct terminal *term = ctx->term;
     const int my_id = ctx->my_id;

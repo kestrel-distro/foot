@@ -1,4 +1,5 @@
 #include <errno.h>
+#include "kestrel_hint.h"
 #include <getopt.h>
 #include <limits.h>
 #include <signal.h>
@@ -147,6 +148,7 @@ enum {
 int
 main(int argc, char *const *argv)
 {
+    kestrel_hint_set(0, 2);
     /* Custom exit code, to enable users to differentiate between foot
      * itself failing, and the client application failing */
     static const int foot_exit_failure = -36;

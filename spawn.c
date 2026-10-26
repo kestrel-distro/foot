@@ -1,4 +1,5 @@
 #include "spawn.h"
+#include "kestrel_hint.h"
 
 #include <string.h>
 #include <unistd.h>
@@ -34,6 +35,7 @@ spawn(struct reaper *reaper, const char *cwd, char *const argv[],
 
     if (pid == 0) {
         /* Child */
+        kestrel_hint_set(0, 2);
         close(pipe_fds[0]);
 
         if (setsid() < 0)
