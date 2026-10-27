@@ -1,3 +1,25 @@
+# Kestrel fork: `foot-kestrel`
+
+Kestrel's terminal is this fork. It keeps foot's engine and adds the pieces the
+distribution needs:
+
+- `kestrel_hint.c` is compiled into the main, client, render and spawn paths and
+  sets the per-task scheduling hint (`sched_setattr(2)`, flag `1ULL << 40`), so
+  a terminal, its render threads and the processes it spawns carry the same
+  class hint into `scx_kestrel`.
+- `packaging/arch` builds `foot-kestrel`, which `provides`/`conflicts` `foot`
+  and drops the bundled terminfo; the Kestrel package is built from source at
+  ISO time and served from `[kestrel]` afterwards.
+- The distribution runs one `foot --server` in `kestrel-term.slice` and opens
+  windows through `kestrel-footclient`, which passes the active theme palette as
+  `-o` overrides. A server never re-reads `foot.ini`, so without the wrapper a
+  window opened after a theme switch would keep the server's startup palette.
+- Terminals run fish; `fastfetch` runs once at the top of each new window.
+
+Upstream foot README follows.
+
+---
+
 # ![Logo: a terminal with a foot shaped prompt](icons/hicolor/48x48/apps/foot.png) foot
 
 The fast, lightweight and minimalistic Wayland terminal emulator.
